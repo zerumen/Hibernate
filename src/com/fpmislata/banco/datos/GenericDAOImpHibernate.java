@@ -17,7 +17,7 @@ import org.hibernate.SessionFactory;
  */
 public class GenericDAOImpHibernate<T, ID extends Serializable> implements GenericDAO<T, ID>{
     
-  private SessionFactory sessionFactory;
+  protected SessionFactory sessionFactory;
   
   public  GenericDAOImpHibernate(SessionFactory sessionFactory){
      this.sessionFactory=sessionFactory;
