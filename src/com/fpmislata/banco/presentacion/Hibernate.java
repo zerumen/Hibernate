@@ -20,22 +20,6 @@ import org.hibernate.service.ServiceRegistryBuilder;
 public class Hibernate {
     
     public static void main(String[] args) {
-        
-        SessionFactory sessionFactory;
-
- Configuration configuration = new Configuration();
-configuration.configure();
-ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
-sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-
-Session session = sessionFactory.openSession();
-
-EntidadBancaria entidadBancaria=(EntidadBancaria)session.get(EntidadBancaria.class,1);
-        System.out.println(entidadBancaria.getNombre());
-
-session.close(); 
-
-sessionFactory.close();
-       
+     
     }
 }

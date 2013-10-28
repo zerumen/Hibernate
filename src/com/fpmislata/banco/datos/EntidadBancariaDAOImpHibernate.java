@@ -20,9 +20,7 @@ public class EntidadBancariaDAOImpHibernate extends GenericDAOImpHibernate<Entid
  
    
    
- public  EntidadBancariaDAOImpHibernate(SessionFactory sessionFactory){
-     super(sessionFactory);
- } 
+
  
  
 

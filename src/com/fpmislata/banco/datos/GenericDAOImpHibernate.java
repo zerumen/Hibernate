@@ -19,8 +19,8 @@ public class GenericDAOImpHibernate<T, ID extends Serializable> implements Gener
     
   protected SessionFactory sessionFactory;
   
-  public  GenericDAOImpHibernate(SessionFactory sessionFactory){
-     this.sessionFactory=sessionFactory;
+  public  GenericDAOImpHibernate(){
+     this.sessionFactory=HibernateUtil.getSessionFactory();
  }
   
     @Override
@@ -66,6 +66,9 @@ public class GenericDAOImpHibernate<T, ID extends Serializable> implements Gener
          Session session=sessionFactory.openSession();
           Query query = session.createQuery("SELECT t FROM " +getEntityClass().getName()+" t");
           List<T> lista = query.list();
+           for (T t : lista) {
+            System.out.println(t.toString());
+}
           session.close();
       return lista;
       
