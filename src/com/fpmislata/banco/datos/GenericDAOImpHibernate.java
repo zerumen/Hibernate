@@ -25,51 +25,51 @@ public class GenericDAOImpHibernate<T, ID extends Serializable> implements Gener
   
     @Override
     public T read(ID id){
-       Session session=sessionFactory.openSession();
+       Session session=sessionFactory.getCurrentSession();
        T tipo=(T) session.get(getEntityClass(),id);
-       session.close();
+      
        return tipo;
        
    }
     
     @Override
    public void insert(T tipo){
-        Session session=sessionFactory.openSession();
+        Session session=sessionFactory.getCurrentSession();
         session.beginTransaction();
         session.save(tipo);
         session.getTransaction().commit();
-        session.close();
+        
   }
     
    @Override
     public void update(T tipo){
-      Session session=sessionFactory.openSession();
+      Session session=sessionFactory.getCurrentSession();
       session.beginTransaction();
       session.update(tipo);
       session.getTransaction().commit();
-      session.close();
+      
       
       
     }
    @Override
    public void delete(ID id){
-      Session session=sessionFactory.openSession();
+      Session session=sessionFactory.getCurrentSession();
       session.beginTransaction();
       T tipo=(T)session.get(getEntityClass(),id);
       session.delete(tipo);
       session.getTransaction().commit();
-      session.close();
+      
   }
    
     @Override
    public List<T> findAll(){
-         Session session=sessionFactory.openSession();
+         Session session=sessionFactory.getCurrentSession();
           Query query = session.createQuery("SELECT t FROM " +getEntityClass().getName()+" t");
           List<T> lista = query.list();
            for (T t : lista) {
             System.out.println(t.toString());
 }
-          session.close();
+         
       return lista;
       
     }

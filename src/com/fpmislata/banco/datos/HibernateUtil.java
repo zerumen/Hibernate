@@ -5,8 +5,10 @@
 package com.fpmislata.banco.datos;
 
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.context.internal.ThreadLocalSessionContext;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
@@ -41,5 +43,16 @@ public class HibernateUtil {
         if ((sessionFactory!=null) && (sessionFactory.isClosed()==false)) {
              sessionFactory.close();
         }
+     }
+      public static void openSessionAndBindToThread() {
+        Session session = sessionFactory.openSession();
+         ThreadLocalSessionContext.bind(session);
+    }
+      
+     public static void closeSessionAndUnbindFromThread() {
+         Session session = ThreadLocalSessionContext.unbind(sessionFactory);
+        if (session!=null) {
+            session.close();
+         }
      }
 }
